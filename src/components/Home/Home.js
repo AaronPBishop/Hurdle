@@ -1,5 +1,5 @@
-import PlacedLetters from "../PlacedLetters/PlacedLetters.js";
-import ValidContainer from "../ValidLetters/ValidContainer";
+import ValidLetters from "../ValidLetters/ValidLetters.js";
+import PlacedContainer from "../PlacedLetters/PlacedContainer.js";
 import InvalidLetters from "../InvalidLetters/InvalidLetters.js";
 
 const Home = () => {
@@ -10,8 +10,8 @@ const Home = () => {
             justifyContent: 'center'
         }}>
             <div style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', width: '40vw'}}>
-                <ValidContainer />
-                <PlacedLetters />
+                <ValidLetters />
+                <PlacedContainer />
                 <InvalidLetters />
             </div>
         </div>
