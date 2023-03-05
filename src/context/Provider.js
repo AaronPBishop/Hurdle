@@ -16,6 +16,8 @@ const ContextProvider = ({ children }) => {
     const [validVals, setValidVals] = useState('');
     const [placedVals, setPlacedVals] = useState(ltrPlacements);
     const [invalidVals, setInvalidVals] = useState('');
+
+    const [results, setResults] = useState([]);
   
     const values = {
       currClicked,
@@ -25,7 +27,9 @@ const ContextProvider = ({ children }) => {
       placedVals,
       setPlacedVals,
       invalidVals,
-      setInvalidVals
+      setInvalidVals,
+      results,
+      setResults
     };
   
     return (
