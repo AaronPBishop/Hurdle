@@ -36,10 +36,12 @@ const InvalidLetters = () => {
                 width: '30vw',
                 height: '8vh',
                 border: 'none',
-                boxShadow: '0px 0px 4px 1px black',
+                boxShadow: '0px 0px 4px 1px rgb(0, 130, 135)',
                 borderRadius: '.8vw',
                 textAlign: 'center',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                backgroundColor: 'rgb(0, 190, 195)',
+                color: 'white'
             }}>
             </input>
         </div>

@@ -10,15 +10,14 @@ const PlacedContainer = () => {
         <div>
             <p style={{textAlign: 'center', fontSize: '1.5em'}}>Placed Letters</p>
             {
-                Array.from({ length: 5 }).map((el, i) => {
-                    return (
-                        <div 
-                        onClick={() => setCurrClicked(i)}
-                        style={{display: 'inline-flex'}}>
-                            <PlacedLetter index={i} key={i} />
-                        </div>
-                    )
-                })
+                Array.from({ length: 5 }).map((el, i) => 
+                    <div 
+                    key={i}
+                    onClick={() => setCurrClicked(i)}
+                    style={{display: 'inline-flex'}}>
+                        <PlacedLetter index={i} />
+                    </div>
+                )
             }
         </div>
     );

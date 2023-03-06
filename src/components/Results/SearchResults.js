@@ -9,21 +9,31 @@ const SearchResults = () => {
         <div
         style={{
             display: results.length ? 'flex' : 'none',
-            justifyContent: 'space-evenly',
+            justifyContent: 'center',
+            border: 'none',
+            borderBottom: '0.4vh solid rgb(0, 140, 145)',
+            borderRadius: '1vw',
             flexWrap: 'wrap',
-            width: '100%',
+            width: '28vw',
             height: '20vh',
-            marginTop: '6vh',
-            overflowY: 'auto'
+            marginTop: '4vh',
+            overflowY: 'auto',
+            backgroundColor: 'rgb(0, 190, 195)',
+            color: 'white'
         }}>
             {
-                results.map((word, i) => {
-                    return (
-                        <div style={{width: '10vw', padding: '1vw', marginRight: '20.5vw'}} key={i}>
-                            <p>{word}</p>
-                        </div>
-                    )
-                })
+                results.map((word, i) => 
+                    <p 
+                    key={i}
+                    style={{
+                        fontSize: '2em',
+                        textAlign: 'center',
+                        marginTop: '0vh',
+                        marginBottom: '0vh',
+                        width: '20vw'
+                    }}>
+                        {word}
+                    </p>)
             }
         </div>
     );

@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useContext } from 'react';
 
 import { AppContext } from '../../context/Provider.js';
 
@@ -7,19 +7,12 @@ import findWords from '../../functions/findWords.js';
 const MakeSearch = () => {
     const { validVals, placedVals, invalidVals, setResults } = useContext(AppContext);
 
-    const [clicked, setClicked] = useState(false);
-
-    useEffect(() => {
-        if (clicked === true) {
-            const results = findWords(validVals, placedVals, invalidVals);
-            setResults(results);
-            setClicked(false);
-        };
-    }, [clicked]);
-
     return (
         <div
-        onClick={() => setClicked(true)}
+        onClick={() => {
+            const results = findWords(validVals.toLowerCase(), placedVals, invalidVals.toLowerCase());
+            setResults(results);
+        }}
         style={{
             marginTop: '6vh',
             width: '20vw',

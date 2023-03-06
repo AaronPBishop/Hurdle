@@ -1,7 +1,11 @@
 html {
     font-family: 'Kanit', sans-serif;
-    overflow-y: auto;
+    overflow-y: hidden;
     user-select: none;
+}
+
+body {
+    background: linear-gradient(rgb(10, 10, 40), rgb(0, 0, 30));
 }
 
 input:-webkit-autofill {
@@ -12,4 +16,26 @@ input:-webkit-autofill {
 
 input:focus {
     outline: 2px solid rgb(200, 200, 0);;
+}
+
+::-webkit-scrollbar {
+    height: 3px;
+    width: 5px;
+	background-color: transparent;
+}
+
+::-webkit-scrollbar-track {
+	border-radius: 44px;
+
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    margin-left: 3vh;
+    margin-right: 3vh;
+    
+	background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 44px;
+	background-color: rgb(255, 140, 0);
 }
