@@ -13,8 +13,22 @@ const findAnagrams = (validVals) => {
     return finalAnagrams;
 };
 
+const generateAlphabet = (validVals, invalidVals) =>  {
+    const filtered = 'abcdefghijklmnopqrstuvwxyz'.split('').filter(ltr => !invalidVals.includes(ltr));
+
+    const filterCopy = [...filtered];
+    for (let i = 0; i < filtered.length; i++) {
+        const currLtr = filtered[i];
+        if (validVals.includes(currLtr)) {
+            filterCopy.splice(i, 0, currLtr, currLtr, currLtr)
+        };
+    };
+
+    return filterCopy.join('');
+};
+
 const generateRandomWord = (validVals, placedVals, invalidVals, triedWords) => {
-    const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+    const alphabet = generateAlphabet(validVals, invalidVals);
     let word = '';
 
     const values = Object.values(placedVals);
@@ -23,39 +37,33 @@ const generateRandomWord = (validVals, placedVals, invalidVals, triedWords) => {
         if (values[i] !== null) {
             word += values[i].toLowerCase();
         } else {
-            let randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
-
-            while (invalidVals.includes(randomLetter)) {
-                randomLetter = alphabet[Math.floor(Math.random() * alphabet.length)];
-            };
-
-            word += randomLetter;
+            word += alphabet[Math.floor(Math.random() * alphabet.length)];
         };
     };
 
-
-    for (let ltr of validVals.split('')) {
-        if (!word.split('').includes(ltr)) return generateRandomWord(validVals, placedVals, invalidVals, triedWords);
-    };
-
-    if (triedWords.includes(word)) return null;
+    if (triedWords.has(word)) return null;
   
     return word;
 };
 
-const makeGuesses = (validVals, placedVals, invalidVals, guesses=[], triedWords=[], i=0) => {
-    if (i === 1000) return guesses;
+const makeGuesses = (validVals, placedVals, invalidVals) => {
+    const guessCopy = [];
+    const triedWords = new Set();
 
-    const guessCopy = [ ...guesses ];
-    const triedCopy = [ ...triedWords ];
+    let i = 0;
+    while (i < 1000000) {
+        const randWord = generateRandomWord(validVals, placedVals, invalidVals, triedWords);
+        if (randWord === null) {
+            i++;
+            continue;
+        };
 
-    const randWord = generateRandomWord(validVals, placedVals, invalidVals, triedWords);
-    if (randWord === null) return makeGuesses(validVals, placedVals, invalidVals, guessCopy, triedCopy, i+=1);
+        if (dictionary[randWord]) guessCopy.push(randWord);
+        triedWords.add(randWord);
+        i++;
+    };
 
-    if (dictionary[randWord]) guessCopy.push(randWord);
-    triedCopy.push(randWord);
-
-    return makeGuesses(validVals, placedVals, invalidVals, guessCopy, triedCopy, i+=1);
+    return guessCopy;
 };
 
 const findWords = (validVals, placedVals, invalidVals) => {
