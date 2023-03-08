@@ -9,8 +9,7 @@ const Spinner = () => {
 
     return (
         <div style={{display: loading ? 'flex' : 'none', justifyContent: 'center', position: 'relative', top: '6vh'}}>
-            <div className='spinner'>
-            </div>
+            <div className='spinner'></div>
         </div>
     );
 };

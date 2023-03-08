@@ -16,7 +16,7 @@ const findAnagrams = (validVals) => {
 const generateAlphabet = (validVals, invalidVals) =>  {
     const filtered = 'abcdefghijklmnopqrstuvwxyz'.split('').filter(ltr => !invalidVals.includes(ltr));
 
-    const filterCopy = [...filtered];
+    const filterCopy = [ ...filtered ];
     for (let i = 0; i < filtered.length; i++) {
         const currLtr = filtered[i];
         if (validVals.includes(currLtr)) {
@@ -47,7 +47,7 @@ const generateRandomWord = (validVals, placedVals, invalidVals, triedWords) => {
 };
 
 const makeGuesses = (validVals, placedVals, invalidVals) => {
-    const guessCopy = [];
+    const guesses = [];
     const triedWords = new Set();
 
     let i = 0;
@@ -58,20 +58,19 @@ const makeGuesses = (validVals, placedVals, invalidVals) => {
             continue;
         };
 
-        if (dictionary[randWord]) guessCopy.push(randWord);
+        if (dictionary[randWord]) guesses.push(randWord);
         triedWords.add(randWord);
         i++;
     };
 
-    return guessCopy;
+    return guesses;
 };
 
 const findWords = (validVals, placedVals, invalidVals) => {
     const totalPlacedVals = determineTotalPlaced(placedVals);
 
-    if (validVals.length === 0) return ['Provide More Input'];
+    if (!validVals.length || !invalidVals.length) return ['Please Provide More Input for Accurate Results'];
     if (validVals.length === 5 && totalPlacedVals === 0) return findAnagrams(validVals);
-    if (validVals.length > 0 && invalidVals.length < 1) return ['Provide More Input'];
 
     return makeGuesses(validVals, placedVals, invalidVals);
 };
