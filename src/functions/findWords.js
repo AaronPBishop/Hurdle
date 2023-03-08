@@ -41,6 +41,7 @@ const generateRandomWord = (validVals, placedVals, invalidVals, triedWords) => {
         };
     };
 
+    for (let ltr of validVals) if (!validVals.includes(ltr)) return null;
     if (triedWords.has(word)) return null;
   
     return word;
