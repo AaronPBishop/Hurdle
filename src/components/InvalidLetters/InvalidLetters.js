@@ -5,7 +5,7 @@ import { AppContext } from '../../context/Provider.js';
 const InvalidLetters = () => {
     const [input, setInput] = useState('');
 
-    const { setInvalidVals } = useContext(AppContext);
+    const { validVals, placedVals, setInvalidVals } = useContext(AppContext);
 
     useEffect(() => {setInvalidVals(input)}, [input]);
 
@@ -27,7 +27,7 @@ const InvalidLetters = () => {
             value={input}
             onKeyDown={e => handleKeyDown(e)}
             onChange={e => {
-                if (input.includes(e.target.value.charAt(e.target.value.length - 1).toUpperCase()) || input.length >= 26) return;
+                if (input.includes(e.target.value.charAt(e.target.value.length - 1).toUpperCase()) || validVals.includes(e.target.value.charAt(e.target.value.length - 1).toUpperCase()) || Object.values(placedVals).includes(e.target.value.charAt(e.target.value.length - 1).toUpperCase()) || input.length >= 26) return;
                 if (e.target.value.charAt(e.target.value.length - 1).toUpperCase().match(/[A-Z]/)) setInput(e.target.value.toUpperCase());
             }}
             style={{
