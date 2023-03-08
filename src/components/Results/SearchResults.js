@@ -1,22 +1,24 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 import { AppContext } from '../../context/Provider.js';
 
 const SearchResults = () => {
-    const { results } = useContext(AppContext);
+    const { results, loaded, setLoaded } = useContext(AppContext);
+
+    useEffect(() => {
+        if (results && results.length) setLoaded(true);
+    }, [results]);
 
     return (
         <div
         style={{
-            display: results.length ? 'flex' : 'none',
-            justifyContent: 'center',
+            display: loaded ? 'block' : 'none',
             border: 'none',
-            borderBottom: '0.4vh solid rgb(0, 140, 145)',
+            borderBottom: '0.8vh solid rgb(0, 140, 145)',
             borderRadius: '1vw',
-            flexWrap: 'wrap',
             width: '28vw',
-            height: '20vh',
-            marginTop: '4vh',
+            height: results.length < 4 ? '30vh' : '50vh',
+            marginTop: '10vh',
             overflowY: 'auto',
             backgroundColor: 'rgb(0, 190, 195)',
             color: 'white'
@@ -26,11 +28,9 @@ const SearchResults = () => {
                     <p 
                     key={i}
                     style={{
+                        marginTop: results.length < 2 ? '10vh' : '5vh',
                         fontSize: '2em',
                         textAlign: 'center',
-                        marginTop: '0vh',
-                        marginBottom: '0vh',
-                        width: '20vw'
                     }}>
                         {word}
                     </p>)

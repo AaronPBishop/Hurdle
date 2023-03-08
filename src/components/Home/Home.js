@@ -1,10 +1,17 @@
+import { useContext } from 'react';
+
+import { AppContext } from '../../context/Provider.js';
+
 import ValidLetters from "../ValidLetters/ValidLetters.js";
 import PlacedContainer from "../PlacedLetters/PlacedContainer.js";
 import InvalidLetters from "../InvalidLetters/InvalidLetters.js";
 import MakeSearch from "../Results/MakeSearch.js";
 import SearchResults from "../Results/SearchResults.js";
+import Spinner from './Spinner.js';
 
 const Home = () => {
+    const { loaded } = useContext(AppContext);
+
     return (
         <div style={{display: 'flex', justifyContent: 'center'}}>
             <div 
@@ -21,11 +28,17 @@ const Home = () => {
                 overflowY: 'auto'
             }}>
                 <div style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', width: '40vw'}}>
-                    <ValidLetters />
-                    <PlacedContainer />
-                    <InvalidLetters />
-                    <MakeSearch />
-                    <SearchResults />
+                    <div style={{ display: loaded ? 'none' : 'block' }}>
+                        <ValidLetters />
+                        <PlacedContainer />
+                        <InvalidLetters />
+                        <Spinner />
+                    </div>
+
+                    <div>
+                        <MakeSearch />
+                        <SearchResults />
+                    </div>
                 </div>
             </div>
         </div>

@@ -18,6 +18,9 @@ const ContextProvider = ({ children }) => {
     const [invalidVals, setInvalidVals] = useState('');
 
     const [results, setResults] = useState([]);
+
+    const [loading, setLoading] = useState(false);
+    const [loaded, setLoaded] = useState(false);
   
     const values = {
       currClicked,
@@ -29,7 +32,11 @@ const ContextProvider = ({ children }) => {
       invalidVals,
       setInvalidVals,
       results,
-      setResults
+      setResults,
+      loading,
+      setLoading,
+      loaded,
+      setLoaded
     };
   
     return (
