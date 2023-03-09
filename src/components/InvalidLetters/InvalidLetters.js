@@ -20,7 +20,9 @@ const InvalidLetters = () => {
 
     return (
         <div>
-            <p style={{textAlign: 'center', fontSize: '1.5em'}}>Invalid Letters</p>
+            <p style={{fontFamily: 'Orbitron', fontWeight: 'bold', textShadow: '0px 1px 1px black', color: 'rgb(255, 140, 0)', textAlign: 'center', fontSize: '1.5em', marginBottom: '1.5vh'}}>
+                Invalid Letters
+            </p>
             
             <input
             placeholder='Enter Invalid Letters'

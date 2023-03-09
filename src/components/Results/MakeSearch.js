@@ -27,7 +27,7 @@ const MakeSearch = () => {
                 setLoading(true);
             }}
             style={{
-                marginTop: '6vh',
+                marginTop: !loaded ? '3vh' : '8vh',
                 width: '20vw',
                 height: '10vh',
                 backgroundColor: 'rgb(255, 140, 0)', 
