@@ -20,40 +20,59 @@ const generateAlphabet = (validVals, invalidVals) =>  {
     for (let i = 0; i < filtered.length; i++) {
         const currLtr = filtered[i];
         if (validVals.includes(currLtr)) {
-            filterCopy.splice(i, 0, currLtr, currLtr, currLtr)
+            filterCopy.splice(i, 0, currLtr, currLtr)
         };
     };
 
     return filterCopy.join('');
 };
 
-const generateRandomWord = (validVals, placedVals, invalidVals, triedWords) => {
-    const alphabet = generateAlphabet(validVals, invalidVals);
-    let word = '';
-
-    const values = Object.values(placedVals);
-  
-    for (let i = 0; i < 5; i++) {
-        if (values[i] !== null) {
-            word += values[i].toLowerCase();
-        } else {
-            word += alphabet[Math.floor(Math.random() * alphabet.length)];
+const containsAllValidVals = (word, validVals) => {
+    const ltrs = {};
+    for (let i = 0; i < word.split('').length; i++) {
+        for (let j = 0; j < validVals.split('').length; j++) {
+            if (word.split('')[i] === validVals.split('')[j]) {
+                if (ltrs[validVals.split('')[j]] !== undefined) ltrs[validVals.split('')[j]]++;
+                if (ltrs[validVals.split('')[j]] === undefined) ltrs[validVals.split('')[j]] = 1;
+            };
         };
     };
 
-    for (let ltr of validVals) if (!validVals.includes(ltr)) return null;
-    if (triedWords.has(word)) return null;
-  
-    return word;
+    if (Object.keys(ltrs).length === validVals.split('').length) return true;
+    return false;
 };
 
-const makeGuesses = (validVals, placedVals, invalidVals) => {
+const generateRandomWord = (validVals, placedVals, misplacedVals, invalidVals, triedWords) => {
+    const alphabet = generateAlphabet(validVals, invalidVals);
+    let word = '';
+
+    const placedValues = Object.values(placedVals);
+    const misplacedValues = Object.values(misplacedVals);
+  
+    for (let i = 0; i < 5; i++) {
+        if (placedValues[i] !== null) {
+            word += placedValues[i].toLowerCase();
+        } else {
+            let randLtr = alphabet[Math.floor(Math.random() * alphabet.length)];
+
+            while (randLtr.toUpperCase() === misplacedValues[i]) randLtr = alphabet[Math.floor(Math.random() * alphabet.length)];
+
+            word += randLtr;
+        };
+    };
+
+    if (triedWords.has(word)) return null;
+    if (containsAllValidVals(word, validVals)) return word;
+    return null;
+};
+
+const makeGuesses = (validVals, placedVals, misplacedVals, invalidVals) => {
     const guesses = [];
     const triedWords = new Set();
 
     let i = 0;
     while (i < 1000000) {
-        const randWord = generateRandomWord(validVals, placedVals, invalidVals, triedWords);
+        const randWord = generateRandomWord(validVals, placedVals, misplacedVals, invalidVals, triedWords);
         if (randWord === null) {
             i++;
             continue;
@@ -67,13 +86,11 @@ const makeGuesses = (validVals, placedVals, invalidVals) => {
     return guesses;
 };
 
-const findWords = (validVals, placedVals, invalidVals) => {
-    const totalPlacedVals = determineTotalPlaced(placedVals);
+const findWords = (validVals, placedVals, misplacedVals, invalidVals) => {
+    if (!validVals.length || !invalidVals.length) return ['Provide More Input for Accurate Results'];
+    if (validVals.length === 5 && determineTotalPlaced(placedVals) === 0) return findAnagrams(validVals);
 
-    if (!validVals.length || !invalidVals.length) return ['Please Provide More Input for Accurate Results'];
-    if (validVals.length === 5 && totalPlacedVals === 0) return findAnagrams(validVals);
-
-    return makeGuesses(validVals, placedVals, invalidVals);
+    return makeGuesses(validVals, placedVals, misplacedVals, invalidVals);
 };
 
 export default findWords;

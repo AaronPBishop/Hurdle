@@ -4,6 +4,7 @@ import { AppContext } from '../../context/Provider.js';
 
 import ValidLetters from "../ValidLetters/ValidLetters.js";
 import PlacedContainer from "../PlacedLetters/PlacedContainer.js";
+import MisplacedContainer from '../MisplacedLetters/MisplacedContainer.js';
 import InvalidLetters from "../InvalidLetters/InvalidLetters.js";
 import MakeSearch from "../Results/MakeSearch.js";
 import SearchResults from "../Results/SearchResults.js";
@@ -31,6 +32,7 @@ const Home = () => {
                     <div style={{ display: loaded ? 'none' : 'block' }}>
                         <ValidLetters />
                         <PlacedContainer />
+                        <MisplacedContainer />
                         <InvalidLetters />
                         <Spinner />
                     </div>

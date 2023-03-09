@@ -5,11 +5,11 @@ import { AppContext } from '../../context/Provider.js';
 import findWords from '../../functions/findWords.js';
 
 const MakeSearch = () => {
-    const { validVals, placedVals, invalidVals, setResults, loading, setLoading, loaded, setLoaded } = useContext(AppContext);
+    const { validVals, placedVals, misplacedVals, invalidVals, setResults, loading, setLoading, loaded, setLoaded } = useContext(AppContext);
 
     useEffect(() => {
         if (loading) {
-            const results = findWords(validVals.toLowerCase(), placedVals, invalidVals.toLowerCase());
+            const results = findWords(validVals.toLowerCase(), placedVals, misplacedVals, invalidVals.toLowerCase());
             setResults(results);
             setLoading(false);
         };

@@ -12,9 +12,11 @@ const ContextProvider = ({ children }) => {
     };
 
     const [currClicked, setCurrClicked] = useState(null);
+    const [currMisClicked, setCurrMisClicked] = useState(null);
 
     const [validVals, setValidVals] = useState('');
     const [placedVals, setPlacedVals] = useState(ltrPlacements);
+    const [misplacedVals, setMisplacedVals] = useState(ltrPlacements);
     const [invalidVals, setInvalidVals] = useState('');
 
     const [results, setResults] = useState([]);
@@ -23,20 +25,15 @@ const ContextProvider = ({ children }) => {
     const [loaded, setLoaded] = useState(false);
   
     const values = {
-      currClicked,
-      setCurrClicked,
-      validVals,
-      setValidVals,
-      placedVals,
-      setPlacedVals,
-      invalidVals,
-      setInvalidVals,
-      results,
-      setResults,
-      loading,
-      setLoading,
-      loaded,
-      setLoaded
+      currClicked, setCurrClicked,
+      validVals, setValidVals,
+      placedVals, setPlacedVals,
+      misplacedVals, setMisplacedVals,
+      invalidVals, setInvalidVals,
+      results, setResults,
+      loading, setLoading,
+      loaded, setLoaded,
+      currMisClicked, setCurrMisClicked
     };
   
     return (
