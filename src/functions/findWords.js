@@ -1,6 +1,10 @@
 import findPermutations from './findPermutations.js';
 
-const dictionary = require('../dictionary/words_dictionary.json');
+const dictionaryFile = require('../dictionary/words_dictionary.json');
+const words = Object.keys(dictionaryFile);
+
+const dictionary = {};
+words.forEach(word => dictionary[word] = true);
 
 const determineTotalPlaced = (placedVals) => Object.values(placedVals).filter(el => el !== null).length;
 
