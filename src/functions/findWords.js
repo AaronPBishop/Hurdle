@@ -1,10 +1,7 @@
 import findPermutations from './findPermutations.js';
 
 const dictionaryFile = require('../dictionary/words_dictionary.json');
-const words = Object.keys(dictionaryFile);
-
-const dictionary = {};
-words.forEach(word => dictionary[word] = true);
+const dictionary = Object.keys(dictionaryFile);
 
 const determineTotalPlaced = (placedVals) => Object.values(placedVals).filter(el => el !== null).length;
 
@@ -12,7 +9,7 @@ const findAnagrams = (validVals) => {
     const finalAnagrams = [];
     const permutations = findPermutations(validVals);
 
-    for (let i = 0; i < permutations.length; i++) if (dictionary[permutations[i]]) finalAnagrams.push(permutations[i])
+    for (let i = 0; i < permutations.length; i++) if (dictionary.includes(permutations[i])) finalAnagrams.push(permutations[i])
     
     return finalAnagrams;
 };
@@ -82,7 +79,7 @@ const makeGuesses = (validVals, placedVals, misplacedVals, invalidVals) => {
             continue;
         };
 
-        if (dictionary[randWord]) guesses.push(randWord);
+        if (dictionary.includes(randWord)) guesses.push(randWord);
         triedWords.add(randWord);
         i++;
     };
