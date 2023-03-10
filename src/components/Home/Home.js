@@ -10,7 +10,7 @@ import MakeSearch from "../Results/MakeSearch.js";
 import SearchResults from "../Results/SearchResults.js";
 import Spinner from './Spinner.js';
 
-const Home = ({ dictionary }) => {
+const Home = () => {
     const { loaded } = useContext(AppContext);
 
     return (
@@ -38,7 +38,7 @@ const Home = ({ dictionary }) => {
                     </div>
 
                     <div>
-                        <MakeSearch dictionary={dictionary} />
+                        <MakeSearch />
                         <SearchResults />
                     </div>
                 </div>

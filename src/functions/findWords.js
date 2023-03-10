@@ -1,8 +1,10 @@
 import findPermutations from './findPermutations.js';
 
+import * as dictionary from '../dictionary/words_dictionary.json';
+
 const determineTotalPlaced = (placedVals) => Object.values(placedVals).filter(el => el !== null).length;
 
-const findAnagrams = (dictionary, validVals) => {
+const findAnagrams = (validVals) => {
     const finalAnagrams = [];
     const permutations = findPermutations(validVals);
 
@@ -64,7 +66,7 @@ const generateRandomWord = (validVals, placedVals, misplacedVals, invalidVals, t
     return null;
 };
 
-const makeGuesses = (dictionary, validVals, placedVals, misplacedVals, invalidVals) => {
+const makeGuesses = (validVals, placedVals, misplacedVals, invalidVals) => {
     const guesses = [];
     const triedWords = new Set();
 
@@ -84,11 +86,11 @@ const makeGuesses = (dictionary, validVals, placedVals, misplacedVals, invalidVa
     return guesses;
 };
 
-const findWords = (dictionary, validVals, placedVals, misplacedVals, invalidVals) => {
+const findWords = (validVals, placedVals, misplacedVals, invalidVals) => {
     if (!validVals.length || !invalidVals.length) return ['Provide More Input for Accurate Results'];
-    if (validVals.length === 5 && determineTotalPlaced(placedVals) === 0) return findAnagrams(dictionary, validVals);
+    if (validVals.length === 5 && determineTotalPlaced(placedVals) === 0) return findAnagrams(validVals);
 
-    return makeGuesses(dictionary, validVals, placedVals, misplacedVals, invalidVals);
+    return makeGuesses(validVals, placedVals, misplacedVals, invalidVals);
 };
 
 export default findWords;
