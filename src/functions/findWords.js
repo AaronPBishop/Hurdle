@@ -1,6 +1,6 @@
 import findPermutations from './findPermutations.js';
 
-import * as dictionary from '../dictionary/words_dictionary.json';
+import dictionary from './combineDictFiles.js';
 
 const determineTotalPlaced = (placedVals) => Object.values(placedVals).filter(el => el !== null).length;
 
