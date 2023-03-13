@@ -4,8 +4,6 @@ import * as dict_3 from '../dictionary/words_1.json';
 
 const dictionary = {};
 
-Object.assign(dictionary, dict_1);
-Object.assign(dictionary, dict_2);
-Object.assign(dictionary, dict_3);
+[dict_1, dict_2, dict_3].forEach(file => Object.assign(dictionary, file));
 
 export default dictionary;
