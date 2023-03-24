@@ -2,7 +2,7 @@
 
 is React based Wordle solver that utilizes a rigorously efficient algorithm and offers the unique ability to input 'invalid letters' in order to optimize search accuracy.
 
-### Live Link: https://hurdle-solver.onrender.com/
+### Live Link: https://hurdle-solver.onrender.com/ (Average load time: 3:30 minutes)
 
 ### To run this application:
 > From your terminal, run `npm install` from the root directory of the application, then run `npm start`.
